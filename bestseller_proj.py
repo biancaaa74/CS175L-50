@@ -36,7 +36,7 @@ def read_books():
     books_list = open('bestsellers.txt','r')
     booklist = []
     for book in books_list:
-        cols = book.split('/t')
+        cols = book.split('\t')
         booklist.append(cols)
     return booklist
     
@@ -45,30 +45,31 @@ def year_range(b):
     end_year = int(input('Please choose an end year: '))
     for book in b:
         date = book[3].split('/')
-    if book[2] >= start_year or book[3] <= end_year:
-        print(book)
+        year = int(date[2])
+        if year >= start_year and year <= end_year:
+            print(book)
 
 def month_year(b):
-    month = str(input('Please enter a month: '))
-    year = str(input('Please enter a year: '))
+    month = int(input('Please enter a month: '))
+    year = int(input('Please enter a year: '))
     for book in b:
         date = book[3].split('/')
-    if book[0] == month and book[2] == year:
-        print(book)
+        if date[0] == month and date[2] == year:
+            print(book)
     
 
 def author(b):
     author = str(input("Please enter an author's name: "))
     for book in b:
         name = book[1]
-    if author == name:
-        print(book)
+        if author == name:
+            print(book)
 
 def title(b):
     book_title = str(input("Please enter the book's title: "))
     for book in b:
         title = book[0]
-    if title == book_title:
-        print(book)
+        if title == book_title:
+            print(book)
 
 main()
